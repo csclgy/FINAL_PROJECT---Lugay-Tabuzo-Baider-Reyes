@@ -447,31 +447,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Migs\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/francescaa.lugay/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Migs\\Documents\\GitHub\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.csproj",
+      "projectUniqueName": "/Users/francescaa.lugay/Documents/GitHub/FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes/HelpdeskApp/HelpdeskApp/HelpdeskApp.csproj",
       "projectName": "HelpdeskApp",
-      "projectPath": "C:\\Users\\Migs\\Documents\\GitHub\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.csproj",
-      "packagesPath": "C:\\Users\\Migs\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Migs\\Documents\\GitHub\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\obj\\",
+      "projectPath": "/Users/francescaa.lugay/Documents/GitHub/FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes/HelpdeskApp/HelpdeskApp/HelpdeskApp.csproj",
+      "packagesPath": "/Users/francescaa.lugay/.nuget/packages/",
+      "outputPath": "/Users/francescaa.lugay/Documents/GitHub/FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes/HelpdeskApp/HelpdeskApp/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Migs\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/francescaa.lugay/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -489,8 +482,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -520,7 +512,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
