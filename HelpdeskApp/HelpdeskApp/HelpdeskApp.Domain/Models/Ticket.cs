@@ -1,6 +1,7 @@
 ﻿namespace HelpdeskApp.HelpdeskApp.Domain.Models
 {
     // May 16, 2025: This code is not yet complete
+    // 
     public class Ticket
     {
         public int Id { get; set; }
