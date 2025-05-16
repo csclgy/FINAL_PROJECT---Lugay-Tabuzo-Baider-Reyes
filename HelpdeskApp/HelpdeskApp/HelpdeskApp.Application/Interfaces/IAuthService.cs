@@ -1,6 +1,9 @@
-﻿namespace HelpdeskApp.HelpdeskApp.Application.Interfaces
+﻿using HelpdeskApp.HelpdeskApp.Application.DTOs;
+
+namespace HelpdeskApp.HelpdeskApp.Application.Interfaces
 {
-    public class IAuthService
+    public interface IAuthService
     {
+        string Authenticate(LoginDto loginDto);
     }
 }

@@ -1,6 +1,10 @@
 ﻿namespace HelpdeskApp.HelpdeskApp.Application.Enums
 {
-    public class TicketStatus
+    public enum TicketStatus
     {
+        Open,
+        InProgress,
+        Resolved,
+        Closed
     }
 }

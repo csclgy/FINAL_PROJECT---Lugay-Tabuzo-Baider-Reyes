@@ -1,6 +1,10 @@
 ﻿namespace HelpdeskApp.HelpdeskApp.Application.Enums
 {
-    public class SeverityLevel
+    public enum SeverityLevel
     {
+        Low,
+        Medium,
+        High,
+        Critical
     }
 }
