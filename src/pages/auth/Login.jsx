@@ -11,6 +11,7 @@ const Login = () => {
     rememberMe: false
   });
   const [errors, setErrors] = useState({});
+  const [loginMessage, setLoginMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
