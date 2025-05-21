@@ -1,49 +1,39 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 import DashboardLayout from './layouts/DashboardLayout';
 import AuthLayout from './layouts/AuthLayout';
 
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
 
-import Dashboard from './pages/Dashboard';
-import TicketList from './components/TicketList';
-import TicketDetails from './components/TicketDetails';
-import CreateTicketForm from './components/CreateTicketForm';
-import UserProfile from './components/UserProfile';
+import Dashboard from './pages/dashboard/Dashboard';
+import TicketList from './pages/tickets/TicketList';
+import TicketDetails from './pages/tickets/TicketDetails';
+import CreateTicketForm from './pages/tickets/CreateTicketForm';
+import UserProfile from './pages/profile/UserProfile';
+
+// Admin Pages (to be implemented)
+// import UsersManagement from './pages/admin/UsersManagement';
+// import Reports from './pages/reports/Reports';
+// import Settings from './pages/settings/Settings';
 
 const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useAuth();
+  const token = localStorage.getItem('token');
   
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
-  
-  if (!user) {
+  if (!token) {
     return <Navigate to="/login" />;
   }
   
   return children;
 };
 
-// Admin/Support Only Route wrapper component
-const AdminRoute = ({ children }) => {
-  const { user, loading } = useAuth();
+const RoleBasedRoute = ({ roles, children }) => {
+  const userString = localStorage.getItem('user');
+  const user = userString ? JSON.parse(userString) : null;
   
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
-  
-  if (!user || (user.role !== 'Admin' && user.role !== 'Support')) {
+  if (!user || !roles.includes(user.role)) {
     return <Navigate to="/dashboard" />;
   }
   
@@ -55,37 +45,45 @@ function App() {
     <Router>
       <AuthProvider>
         <Routes>
-          {/* Auth Routes */}
-          <Route path="/" element={<AuthLayout />}>
-            <Route index element={<Navigate to="/login" />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
+          <Route element={<AuthLayout />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Route>
           
-          {/* Dashboard Routes */}
-          <Route path="/" element={
+          <Route element={
             <ProtectedRoute>
               <DashboardLayout />
             </ProtectedRoute>
           }>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="tickets" element={<TicketList />} />
-            <Route path="tickets/create" element={<CreateTicketForm />} />
-            <Route path="tickets/:ticketId" element={<TicketDetails />} />
-            <Route path="profile" element={<UserProfile />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/tickets" element={<TicketList />} />
+            <Route path="/tickets/create" element={<CreateTicketForm />} />
+            <Route path="/tickets/:id" element={<TicketDetails />} />
+            <Route path="/profile" element={<UserProfile />} />
             
-            {/* Admin Only Routes */}
-            <Route path="admin/*" element={
-              <AdminRoute>
-                <Navigate to="/dashboard" />
-              </AdminRoute>
+            <Route path="/users" element={
+              <RoleBasedRoute roles={['Admin']}>
+                <UsersManagement />
+              </RoleBasedRoute>
+            } />
+            
+            <Route path="/reports" element={
+              <RoleBasedRoute roles={['Admin', 'Supervisor']}>
+                <Reports />
+              </RoleBasedRoute>
+            } />
+            
+            <Route path="/settings" element={
+              <RoleBasedRoute roles={['Admin']}>
+                <Settings />
+              </RoleBasedRoute>
             } />
           </Route>
           
           <Route path="*" element={
-            <ProtectedRoute>
-              <Navigate to="/dashboard" />
-            </ProtectedRoute>
+            localStorage.getItem('token') 
+              ? <Navigate to="/dashboard" /> 
+              : <Navigate to="/login" />
           } />
         </Routes>
       </AuthProvider>
