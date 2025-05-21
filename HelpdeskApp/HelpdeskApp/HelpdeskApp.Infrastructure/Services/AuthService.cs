@@ -1,7 +1,6 @@
 ﻿using HelpdeskApp.HelpdeskApp.Application.DTOs;
 using HelpdeskApp.HelpdeskApp.Application.Interfaces;
 using HelpdeskApp.HelpdeskApp.Infrastructure.Data;
-using HelpdeskApp.HelpdeskApp.Infrastructure.Helpers;
 
 namespace HelpdeskApp.HelpdeskApp.Infrastructure.Services
 {

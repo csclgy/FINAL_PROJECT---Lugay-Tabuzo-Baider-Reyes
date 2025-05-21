@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\HelpdeskApp.Application\HelpdeskApp.Application.csproj" />
+        <ProjectReference Include="..\HelpdeskApp.Domain\HelpdeskApp.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.25.1" />
+        <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.25.1" />
+    </ItemGroup>
+</Project>
