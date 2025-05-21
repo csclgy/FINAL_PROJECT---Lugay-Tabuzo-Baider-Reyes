@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
-import StatsCard from '../components/dashboard/StatsCard';
-import RecentTickets from '../components/dashboard/RecentTickets';
-import TicketsByStatus from '../components/dashboard/TicketsByStatus';
-import TicketsBySeverity from '../components/dashboard/TicketsBySeverity';
+import StatsCard from '../../components/dashboard/StatsCard';
+import RecentTickets from '../../components/dashboard/RecentTickets';
+import TicketsByStatus from '../../components/dashboard/TicketsByStatus';
+import TicketsBySeverity from '../../components/dashboard/TicketsBySeverity';
 
 import { 
   TicketIcon, 

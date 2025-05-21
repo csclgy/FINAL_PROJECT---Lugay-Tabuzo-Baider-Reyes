@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import RemarksList from './RemarksList';
-import AddRemarkForm from './AddRemarkForm';
+import { useAuth } from '../../contexts/AuthContext';
+import RemarksList from '../../components/RemarksList';
+import AddRemarkForm from '../../components/AddRemarkForm';
 
 const TicketDetails = () => {
   const { ticketId } = useParams();

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Outlet, Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import Sidebar from '../components/layout/Sidebar';
-import Navbar from '../components/layout/Navbar';
+import { useAuth } from '../../contexts/AuthContext';
+import Sidebar from './Sidebar';
+import Navbar from './Navbar';
 
 const DashboardLayout = () => {
   const { isAuthenticated, loading } = useAuth();

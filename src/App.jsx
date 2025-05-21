@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 
-import DashboardLayout from './layouts/DashboardLayout';
-import AuthLayout from './layouts/AuthLayout';
+import DashboardLayout from './components/layouts/DashboardLayout';
+import AuthLayout from './components/layouts/AuthLayout';
 
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
@@ -14,10 +14,9 @@ import TicketDetails from './pages/tickets/TicketDetails';
 import CreateTicketForm from './pages/tickets/CreateTicketForm';
 import UserProfile from './pages/profile/UserProfile';
 
-// Admin Pages (to be implemented)
-// import UsersManagement from './pages/admin/UsersManagement';
-// import Reports from './pages/reports/Reports';
-// import Settings from './pages/settings/Settings';
+import UsersManagement from './pages/admin/UsersManagement';
+import Reports from './pages/reports/Reports';
+import Settings from './pages/settings/Settings';
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');

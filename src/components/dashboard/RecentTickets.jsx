@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 
-import StatusBadge from '../tickets/StatusBadge';
-import SeverityBadge from '../tickets/SeverityBadge';
+// import StatusBadge from '../tickets/StatusBadge';
+// import SeverityBadge from '../tickets/SeverityBadge';
 
 const RecentTickets = ({ tickets }) => {
   if (!tickets || tickets.length === 0) {
