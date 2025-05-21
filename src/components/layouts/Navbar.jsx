@@ -4,13 +4,13 @@ import { Menu, Transition } from '@headlessui/react';
 import { useAuth } from '../../contexts/AuthContext';
 
 import { 
-  MenuIcon, 
+  Bars3Icon, 
   BellIcon, 
   ChevronDownIcon, 
-  LogoutIcon, 
+  ArrowRightOnRectangleIcon, 
   UserIcon, 
-  CogIcon
-} from '@heroicons/react/outline';
+  Cog6ToothIcon
+} from '@heroicons/react/24/outline';
 
 const Navbar = ({ onMenuClick }) => {
   const { user, logout } = useAuth();
@@ -26,7 +26,7 @@ const Navbar = ({ onMenuClick }) => {
               onClick={onMenuClick}
             >
               <span className="sr-only">Open sidebar</span>
-              <MenuIcon className="h-6 w-6" aria-hidden="true" />
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
 
@@ -87,7 +87,7 @@ const Navbar = ({ onMenuClick }) => {
                           active ? 'bg-gray-100' : ''
                         } flex px-4 py-2 text-sm text-gray-700`}
                       >
-                        <CogIcon className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
+                        <Cog6ToothIcon className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
                         Settings
                       </a>
                     )}
@@ -100,7 +100,7 @@ const Navbar = ({ onMenuClick }) => {
                           active ? 'bg-gray-100' : ''
                         } flex w-full px-4 py-2 text-sm text-gray-700`}
                       >
-                        <LogoutIcon className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
+                        <ArrowRightOnRectangleIcon className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
                         Sign out
                       </button>
                     )}

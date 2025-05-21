@@ -8,7 +8,7 @@ import {
   PlusCircleIcon, 
   LogOutIcon,
   SettingsIcon,
-  UserGroupIcon,
+  Users,
   BarChart3Icon
 } from 'lucide-react';
 

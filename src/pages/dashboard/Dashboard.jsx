@@ -14,7 +14,7 @@ import {
   CheckCircleIcon, 
   ClockIcon, 
   ExclamationCircleIcon 
-} from '@heroicons/react/outline';
+} from '@heroicons/react/24/outline';
 
 const Dashboard = () => {
   const { user } = useAuth();

@@ -9,7 +9,6 @@ const AddRemarkForm = ({ ticketId }) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  // Check if user has support staff role
   const isStaff = user?.role === 'Admin' || user?.role === 'Support';
 
   const handleSubmit = async (e) => {
