@@ -3,24 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.infrastructure\\helpers\\jwttokengenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.infrastructure\\helpers\\jwttokengenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.application\\interfaces\\iticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.application\\interfaces\\iticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.infrastructure\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.infrastructure\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.application\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.application\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.infrastructure\\services\\ticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.infrastructure\\services\\ticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.domain\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.domain\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.application\\enums\\severitylevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.application\\enums\\severitylevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.application\\enums\\ticketstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.application\\enums\\ticketstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.application\\enums\\severitylevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.application\\enums\\severitylevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.application\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.application\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.application\\dtos\\remarkdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,8 +47,12 @@
       "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.application\\dtos\\ticketcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.application\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.application\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.application\\interfaces\\iticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.application\\interfaces\\iticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|c:\\users\\francesca\\desktop\\final_project---lugay-tabuzo-baider-reyes\\helpdeskapp\\helpdeskapp\\helpdeskapp.application\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A217512D-755D-47B2-9291-E23C85526984}|HelpdeskApp\\HelpdeskApp.csproj|solutionrelative:helpdeskapp\\helpdeskapp.application\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -51,32 +67,58 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Infrastructure\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Infrastructure\\Data\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Infrastructure\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Infrastructure\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Title": "JwtTokenGenerator.cs",
+              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Infrastructure\\Helpers\\JwtTokenGenerator.cs",
+              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Infrastructure\\Helpers\\JwtTokenGenerator.cs",
+              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Infrastructure\\Helpers\\JwtTokenGenerator.cs",
+              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Infrastructure\\Helpers\\JwtTokenGenerator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T14:49:08.389Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ITicketService.cs",
-              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\Interfaces\\ITicketService.cs",
-              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Application\\Interfaces\\ITicketService.cs",
-              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\Interfaces\\ITicketService.cs",
-              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Application\\Interfaces\\ITicketService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T10:36:33.739Z",
+              "WhenOpened": "2025-05-21T14:27:05.862Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Ticket.cs",
+              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Domain\\Models\\Ticket.cs",
+              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Domain\\Models\\Ticket.cs",
+              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Domain\\Models\\Ticket.cs",
+              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Domain\\Models\\Ticket.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T14:25:02.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Infrastructure\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Infrastructure\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Infrastructure\\Services\\AuthService.cs",
+              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Infrastructure\\Services\\AuthService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAqwBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T13:28:55.786Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TicketService.cs",
+              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Infrastructure\\Services\\TicketService.cs",
+              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Infrastructure\\Services\\TicketService.cs",
+              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Infrastructure\\Services\\TicketService.cs",
+              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Infrastructure\\Services\\TicketService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T13:28:19.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "TicketStatus.cs",
               "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\Enums\\TicketStatus.cs",
               "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Application\\Enums\\TicketStatus.cs",
@@ -84,7 +126,8 @@
               "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Application\\Enums\\TicketStatus.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T10:35:11.939Z"
+              "WhenOpened": "2025-05-16T10:35:11.939Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -94,13 +137,79 @@
               "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Application\\Enums\\SeverityLevel.cs",
               "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\Enums\\SeverityLevel.cs",
               "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Application\\Enums\\SeverityLevel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T10:34:52.056Z"
+              "WhenOpened": "2025-05-16T10:34:52.056Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
+              "Title": "RemarkDto.cs",
+              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\RemarkDto.cs",
+              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\RemarkDto.cs",
+              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\RemarkDto.cs",
+              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\RemarkDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T10:32:06.066Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TicketUpdateDto.cs",
+              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketUpdateDto.cs",
+              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketUpdateDto.cs",
+              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketUpdateDto.cs",
+              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketUpdateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T10:32:50.126Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Infrastructure\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Infrastructure\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T14:49:08.389Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "TicketCreateDto.cs",
+              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketCreateDto.cs",
+              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketCreateDto.cs",
+              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketCreateDto.cs",
+              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketCreateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T10:32:25.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LoginDto.cs",
+              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\LoginDto.cs",
+              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\LoginDto.cs",
+              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\LoginDto.cs",
+              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\LoginDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T10:31:40.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "IAuthService.cs",
               "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\Interfaces\\IAuthService.cs",
               "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Application\\Interfaces\\IAuthService.cs",
@@ -112,51 +221,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "TicketUpdateDto.cs",
-              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketUpdateDto.cs",
-              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketUpdateDto.cs",
-              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketUpdateDto.cs",
-              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketUpdateDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAyAAAAAAAAAA==",
+              "DocumentIndex": 11,
+              "Title": "ITicketService.cs",
+              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\Interfaces\\ITicketService.cs",
+              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Application\\Interfaces\\ITicketService.cs",
+              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\Interfaces\\ITicketService.cs",
+              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Application\\Interfaces\\ITicketService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T10:32:50.126Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "TicketCreateDto.cs",
-              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketCreateDto.cs",
-              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketCreateDto.cs",
-              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketCreateDto.cs",
-              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\TicketCreateDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T10:32:25.834Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RemarkDto.cs",
-              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\RemarkDto.cs",
-              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\RemarkDto.cs",
-              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\RemarkDto.cs",
-              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\RemarkDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T10:32:06.066Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "LoginDto.cs",
-              "DocumentMoniker": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\LoginDto.cs",
-              "RelativeDocumentMoniker": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\LoginDto.cs",
-              "ToolTip": "C:\\Users\\Francesca\\Desktop\\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\\HelpdeskApp\\HelpdeskApp\\HelpdeskApp.Application\\DTOs\\LoginDto.cs",
-              "RelativeToolTip": "HelpdeskApp\\HelpdeskApp.Application\\DTOs\\LoginDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T10:31:40.689Z"
+              "WhenOpened": "2025-05-16T10:36:33.739Z"
             }
           ]
         }

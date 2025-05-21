@@ -3,6 +3,8 @@ using HelpdeskApp.HelpdeskApp.Application.Enums;
 using HelpdeskApp.HelpdeskApp.Application.Interfaces;
 using HelpdeskApp.HelpdeskApp.Domain.Models;
 using HelpdeskApp.HelpdeskApp.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace HelpdeskApp.HelpdeskApp.Infrastructure.Services
 {

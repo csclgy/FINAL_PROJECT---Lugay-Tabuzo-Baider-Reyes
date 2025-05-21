@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HelpdeskApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fbec002e4485f77429edf3542049a5eddf47c174")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb82d1d788cd0fa9c803051855dc22638e188cb2")]
 [assembly: System.Reflection.AssemblyProductAttribute("HelpdeskApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HelpdeskApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

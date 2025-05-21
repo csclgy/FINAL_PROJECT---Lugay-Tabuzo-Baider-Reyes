@@ -1,4 +1,6 @@
-﻿namespace HelpdeskApp.HelpdeskApp.Domain.Models
+﻿using HelpdeskApp.HelpdeskApp.Application.Enums;
+
+namespace HelpdeskApp.HelpdeskApp.Domain.Models
 {
     // May 16, 2025: This code is not yet complete
     // 
@@ -7,6 +9,8 @@
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public SeverityLevel Severity { get; set; }
+        public TicketStatus Status { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public int CreatedByUserId { get; set; }
         public User CreatedBy { get; set; } = null!;
