@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="HelpdeskApp.API\HelpdeskApp.API.csproj" />
+    <None Include="helpdeskapp.application\HelpdeskApp.Application.csproj" />
+    <None Include="helpdeskapp.domain\HelpdeskApp.Domain.csproj" />
+    <None Include="helpdeskapp.infrastructure\HelpdeskApp.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+</Project>

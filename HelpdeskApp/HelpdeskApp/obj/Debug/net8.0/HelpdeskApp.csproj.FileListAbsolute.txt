@@ -1,0 +1,8 @@
+C:\Users\Francesca\Desktop\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\HelpdeskApp\HelpdeskApp\obj\Debug\net8.0\HelpdeskApp.csproj.AssemblyReference.cache
+C:\Users\Francesca\Desktop\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\HelpdeskApp\HelpdeskApp\obj\Debug\net8.0\HelpdeskApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Francesca\Desktop\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\HelpdeskApp\HelpdeskApp\obj\Debug\net8.0\HelpdeskApp.AssemblyInfoInputs.cache
+C:\Users\Francesca\Desktop\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\HelpdeskApp\HelpdeskApp\obj\Debug\net8.0\HelpdeskApp.AssemblyInfo.cs
+C:\Users\Francesca\Desktop\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\HelpdeskApp\HelpdeskApp\obj\Debug\net8.0\HelpdeskApp.csproj.CoreCompileInputs.cache
+C:\Users\Francesca\Desktop\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\HelpdeskApp\HelpdeskApp\obj\Debug\net8.0\HelpdeskApp.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Francesca\Desktop\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\HelpdeskApp\HelpdeskApp\obj\Debug\net8.0\HelpdeskApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Francesca\Desktop\FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes\HelpdeskApp\HelpdeskApp\obj\Debug\net8.0\HelpdeskApp.sourcelink.json
