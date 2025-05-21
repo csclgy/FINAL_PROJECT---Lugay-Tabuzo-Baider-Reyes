@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { LockClosedIcon } from '@heroicons/react/24/solid';
@@ -12,6 +12,14 @@ const Login = () => {
   });
   const [errors, setErrors] = useState({});
   const [loginMessage, setLoginMessage] = useState('');
+  const [devMode, setDevMode] = useState(false);
+
+  //CHECK DEVMODE
+  useEffect(() => {
+    const isDevMode = process.env.NODE_ENV === 'development' &&
+                      sessionStorage.getItem('devMode') === 'true';
+    setDevMode(isDevMode);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -48,13 +56,50 @@ const Login = () => {
     e.preventDefault();
     
     if (!validate()) return;
+
+    if (process.env.NODE_ENV === 'development' &&
+      formData.email === 'email@gmail.com' &&
+      formData.password === 'password'
+    ) {
+      localStorage.setItem('token', 'dev-mock-token');
+      localStorage.setItem('user', JSON.stringify({
+        id: 'dev-user',
+        name: 'Development User',
+        email: 'email@gmail.com',
+        role: 'Admin'
+      }));
+      
+      setLoginMessage('Login successful with demo credentials!');
+
+      setTimeout(() => {
+        window.location.href = '/dashboard';
+      }, 1000);
+
+      return;
+    }
     
     const credentials = {
       email: formData.email,
       password: formData.password
     };
     
-    await login(credentials);
+    try {
+      const result = await login(credentials);
+      if (!result?.success) {
+        setLoginMessage(result?.message || 'Login failed. Please check your credentials.');
+      }
+    } catch (error) {
+      setLoginMessage('An error occurred during login.');
+      console.error(error);
+    }
+  };
+
+  const fillDemoCredentials = () => {
+    setFormData({
+      email: 'email@gmail.com',
+      password: 'password',
+      rememberMe: true
+    });
   };
 
   return (
@@ -82,7 +127,7 @@ const Login = () => {
               autoComplete="email"
               value={formData.email}
               onChange={handleChange}
-              className={`form-input rounded-t-md ${errors.email ? 'border-red-300' : ''}`}
+              className={`form-input rounded-md ${errors.email ? 'border-red-300' : ''}`}
               placeholder="Email address"
               aria-invalid={errors.email ? 'true' : 'false'}
             />
@@ -99,7 +144,7 @@ const Login = () => {
               autoComplete="current-password"
               value={formData.password}
               onChange={handleChange}
-              className={`form-input rounded-b-md ${errors.password ? 'border-red-300' : ''}`}
+              className={`form-input rounded-md ${errors.password ? 'border-red-300' : ''}`}
               placeholder="Password"
               aria-invalid={errors.password ? 'true' : 'false'}
             />
@@ -141,6 +186,24 @@ const Login = () => {
             {loading ? 'Signing in...' : 'Sign in'}
           </button>
         </div>
+
+        {/* only shows in development */}
+        {process.env.NODE_ENV === 'development' && (
+          <div className="mt-6 p-3 bg-gray-50 border border-gray-200 rounded text-sm">
+            <p className="font-medium text-gray-700 mb-2">Development Testing:</p>
+            <button
+              type="button"
+              onClick={fillDemoCredentials}
+              className="text-xs bg-gray-200 hover:bg-gray-300 text-gray-800 px-2 py-1 rounded mr-2"
+            >
+              Fill Demo Credentials
+            </button>
+            <p className="text-xs text-gray-600 mt-2">
+              Demo email: demo@example.com<br />
+              Demo password: password
+            </p>
+          </div>
+        )}
       </form>
     </div>
   );

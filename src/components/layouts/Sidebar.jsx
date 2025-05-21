@@ -47,7 +47,7 @@ const Sidebar = () => {
     {
       name: 'Users',
       path: '/users',
-      icon: <UserGroupIcon className="w-5 h-5" />,
+      icon: <Users className="w-5 h-5" />,
       roles: ['Admin']
     },
     {

@@ -18,56 +18,56 @@ import {
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const [stats, setStats] = useState({
+  
+  // Mock data lang ito for development purposes!!
+  //TODO: REMOVE AFTER
+  const mockData = {
+    stats: {
+      total: 27,
+      open: 12,
+      resolved: 15,
+      highPriority: 5
+    },
+    recentTickets: [
+      { id: 1, title: 'Email service is down', status: 'Open', severity: 'High', createdAt: '2025-05-18T10:30:00', department: 'IT' },
+      { id: 2, title: 'New user onboarding issue', status: 'In Progress', severity: 'Medium', createdAt: '2025-05-17T14:45:00', department: 'HR' },
+      { id: 3, title: 'Office printer not responding', status: 'Open', severity: 'Low', createdAt: '2025-05-16T09:15:00', department: 'Operations' },
+      { id: 4, title: 'Website contact form broken', status: 'Resolved', severity: 'Medium', createdAt: '2025-05-15T16:20:00', department: 'Marketing' },
+      { id: 5, title: 'Payroll processing error', status: 'Resolved', severity: 'High', createdAt: '2025-05-14T11:05:00', department: 'Finance' },
+    ],
+    ticketsByStatus: [
+      { name: 'Open', value: 8 },
+      { name: 'In Progress', value: 4 },
+      { name: 'On Hold', value: 3 },
+      { name: 'Resolved', value: 12 },
+    ],
+    ticketsBySeverity: [
+      { name: 'Low', value: 7 },
+      { name: 'Medium', value: 15 },
+      { name: 'High', value: 5 },
+    ]
+  };
+
+  const { data: dashboardData, isLoading, error } = useQuery({
+    queryKey: ['dashboardData'],
+    queryFn: async () => {
+      try {
+        const response = await axios.get('/api/tickets/dashboard');
+        return response.data;
+      } catch (error) {
+        throw new Error('Failed to fetch dashboard data');
+      }
+    },
+    initialData: mockData
+  });
+
+  const safeStats = dashboardData?.stats || {
     total: 0,
     open: 0,
     resolved: 0,
     highPriority: 0
-  });
-
-  const { data: dashboardData, isLoading, error } = useQuery('dashboardData', async () => {
-    try {
-      const response = await axios.get('/api/tickets/dashboard');
-      return response.data;
-    } catch (error) {
-      throw new Error('Failed to fetch dashboard data');
-    }
-  }, {
-    //mock lang to for development purposes
-    initialData: {
-      stats: {
-        total: 27,
-        open: 12,
-        resolved: 15,
-        highPriority: 5
-      },
-      recentTickets: [
-        { id: 1, title: 'Email service is down', status: 'Open', severity: 'High', createdAt: '2025-05-18T10:30:00', department: 'IT' },
-        { id: 2, title: 'New user onboarding issue', status: 'In Progress', severity: 'Medium', createdAt: '2025-05-17T14:45:00', department: 'HR' },
-        { id: 3, title: 'Office printer not responding', status: 'Open', severity: 'Low', createdAt: '2025-05-16T09:15:00', department: 'Operations' },
-        { id: 4, title: 'Website contact form broken', status: 'Resolved', severity: 'Medium', createdAt: '2025-05-15T16:20:00', department: 'Marketing' },
-        { id: 5, title: 'Payroll processing error', status: 'Resolved', severity: 'High', createdAt: '2025-05-14T11:05:00', department: 'Finance' },
-      ],
-      ticketsByStatus: [
-        { name: 'Open', value: 8 },
-        { name: 'In Progress', value: 4 },
-        { name: 'On Hold', value: 3 },
-        { name: 'Resolved', value: 12 },
-      ],
-      ticketsBySeverity: [
-        { name: 'Low', value: 7 },
-        { name: 'Medium', value: 15 },
-        { name: 'High', value: 5 },
-      ]
-    }
-  });
-
-  useEffect(() => {
-    if (dashboardData) {
-      setStats(dashboardData.stats);
-    }
-  }, [dashboardData]);
-
+  };
+  
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -107,25 +107,25 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <StatsCard
           title="Total Tickets"
-          value={stats.total}
+          value={safeStats.total}
           icon={TicketIcon}
           iconColor="bg-blue-500"
         />
         <StatsCard
           title="Open Tickets"
-          value={stats.open}
+          value={safeStats.open}
           icon={ClockIcon}
           iconColor="bg-yellow-500"
         />
         <StatsCard
           title="Resolved Tickets"
-          value={stats.resolved}
+          value={safeStats.resolved}
           icon={CheckCircleIcon}
           iconColor="bg-green-500"
         />
         <StatsCard
           title="High Priority"
-          value={stats.highPriority}
+          value={safeStats.highPriority}
           icon={ExclamationCircleIcon}
           iconColor="bg-red-500"
         />
@@ -141,7 +141,7 @@ const Dashboard = () => {
                 View all
               </Link>
             </div>
-            <RecentTickets tickets={dashboardData.recentTickets} />
+            <RecentTickets tickets={dashboardData?.recentTickets || []} />
           </div>
         </div>
 
@@ -149,12 +149,12 @@ const Dashboard = () => {
         <div className="space-y-6">
           <div className="bg-white shadow rounded-lg p-6">
             <h2 className="text-lg font-medium text-gray-900 mb-4">Tickets by Status</h2>
-            <TicketsByStatus data={dashboardData.ticketsByStatus} />
+            <TicketsByStatus data={dashboardData?.ticketsByStatus || []} />
           </div>
           
           <div className="bg-white shadow rounded-lg p-6">
             <h2 className="text-lg font-medium text-gray-900 mb-4">Tickets by Severity</h2>
-            <TicketsBySeverity data={dashboardData.ticketsBySeverity} />
+            <TicketsBySeverity data={dashboardData?.ticketsBySeverity || []} />
           </div>
         </div>
       </div>
