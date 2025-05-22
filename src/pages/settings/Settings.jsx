@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Save, Plus, Trash2, Edit } from 'lucide-react';
-import axios from 'axios';
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('departments');
@@ -8,6 +7,7 @@ const Settings = () => {
   const [severityLevels, setSeverityLevels] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   
   const [showDepartmentModal, setShowDepartmentModal] = useState(false);
   const [showCategoryModal, setShowCategoryModal] = useState(false);
@@ -19,6 +19,61 @@ const Settings = () => {
     color: '#3B82F6',
     value: 1,
   });
+
+  // Mock API functions for demonstration
+  const mockFetch = (endpoint, options = {}) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        if (endpoint.includes('/departments')) {
+          if (options.method === 'DELETE') {
+            resolve({ ok: true });
+          } else if (options.method === 'PUT' || options.method === 'POST') {
+            resolve({ ok: true });
+          } else {
+            resolve({
+              ok: true,
+              json: () => Promise.resolve([
+                { id: 1, name: 'IT Support', description: 'Information Technology support and maintenance' },
+                { id: 2, name: 'Human Resources', description: 'Employee relations and administrative support' },
+                { id: 3, name: 'Finance', description: 'Financial planning and accounting services' }
+              ])
+            });
+          }
+        } else if (endpoint.includes('/categories')) {
+          if (options.method === 'DELETE') {
+            resolve({ ok: true });
+          } else if (options.method === 'PUT' || options.method === 'POST') {
+            resolve({ ok: true });
+          } else {
+            resolve({
+              ok: true,
+              json: () => Promise.resolve([
+                { id: 1, name: 'Bug Report', description: 'Software bugs and technical issues' },
+                { id: 2, name: 'Feature Request', description: 'New feature suggestions and improvements' },
+                { id: 3, name: 'General Inquiry', description: 'General questions and information requests' }
+              ])
+            });
+          }
+        } else if (endpoint.includes('/severities')) {
+          if (options.method === 'DELETE') {
+            resolve({ ok: true });
+          } else if (options.method === 'PUT' || options.method === 'POST') {
+            resolve({ ok: true });
+          } else {
+            resolve({
+              ok: true,
+              json: () => Promise.resolve([
+                { id: 1, name: 'Low', description: 'Minor issues, low priority', color: '#10B981', value: 1 },
+                { id: 2, name: 'Medium', description: 'Moderate priority issues', color: '#F59E0B', value: 2 },
+                { id: 3, name: 'High', description: 'Important issues requiring quick attention', color: '#EF4444', value: 3 },
+                { id: 4, name: 'Critical', description: 'Urgent issues requiring immediate attention', color: '#DC2626', value: 4 }
+              ])
+            });
+          }
+        }
+      }, 500);
+    });
+  };
 
   useEffect(() => {
     if (activeTab === 'departments') {
@@ -33,14 +88,23 @@ const Settings = () => {
   const fetchDepartments = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
-      const response = await axios.get('/api/departments', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setDepartments(response.data);
+      setError(null);
+      
+      //TODO: CHANGE MOCKFETCH TO AXIOS FOR BETTER FETCHING
+      const response = await mockFetch('/api/departments');
+      
+      if (response.ok) {
+        const data = await response.json();
+        setDepartments(Array.isArray(data) ? data : []);
+      } else {
+        throw new Error('Failed to fetch departments');
+      }
+      
       setLoading(false);
     } catch (error) {
       console.error('Error fetching departments:', error);
+      setError('Failed to load departments');
+      setDepartments([]);
       setLoading(false);
     }
   };
@@ -48,14 +112,22 @@ const Settings = () => {
   const fetchSeverityLevels = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
-      const response = await axios.get('/api/severities', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setSeverityLevels(response.data);
+      setError(null);
+      
+      const response = await mockFetch('/api/severities');
+      
+      if (response.ok) {
+        const data = await response.json();
+        setSeverityLevels(Array.isArray(data) ? data : []);
+      } else {
+        throw new Error('Failed to fetch severity levels');
+      }
+      
       setLoading(false);
     } catch (error) {
       console.error('Error fetching severity levels:', error);
+      setError('Failed to load severity levels');
+      setSeverityLevels([]);
       setLoading(false);
     }
   };
@@ -63,14 +135,22 @@ const Settings = () => {
   const fetchCategories = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
-      const response = await axios.get('/api/categories', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setCategories(response.data);
+      setError(null);
+      
+      const response = await mockFetch('/api/categories');
+      
+      if (response.ok) {
+        const data = await response.json();
+        setCategories(Array.isArray(data) ? data : []);
+      } else {
+        throw new Error('Failed to fetch categories');
+      }
+      
       setLoading(false);
     } catch (error) {
       console.error('Error fetching categories:', error);
+      setError('Failed to load categories');
+      setCategories([]);
       setLoading(false);
     }
   };
@@ -102,16 +182,17 @@ const Settings = () => {
 
   const handleDepartmentSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token');
     
     try {
       if (editingItem) {
-        await axios.put(`/api/departments/${editingItem.id}`, formData, {
-          headers: { Authorization: `Bearer ${token}` }
+        await mockFetch(`/api/departments/${editingItem.id}`, {
+          method: 'PUT',
+          body: JSON.stringify(formData)
         });
       } else {
-        await axios.post('/api/departments', formData, {
-          headers: { Authorization: `Bearer ${token}` }
+        await mockFetch('/api/departments', {
+          method: 'POST',
+          body: JSON.stringify(formData)
         });
       }
       
@@ -124,13 +205,10 @@ const Settings = () => {
   };
 
   const handleDeleteDepartment = async (id) => {
-    if (!confirm('Are you sure? This may affect existing tickets and users.')) return;
+    if (!window.confirm('Are you sure? This may affect existing tickets and users.')) return;
     
     try {
-      const token = localStorage.getItem('token');
-      await axios.delete(`/api/departments/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      await mockFetch(`/api/departments/${id}`, { method: 'DELETE' });
       fetchDepartments();
     } catch (error) {
       console.error('Error deleting department:', error);
@@ -157,16 +235,17 @@ const Settings = () => {
 
   const handleCategorySubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token');
     
     try {
       if (editingItem) {
-        await axios.put(`/api/categories/${editingItem.id}`, formData, {
-          headers: { Authorization: `Bearer ${token}` }
+        await mockFetch(`/api/categories/${editingItem.id}`, {
+          method: 'PUT',
+          body: JSON.stringify(formData)
         });
       } else {
-        await axios.post('/api/categories', formData, {
-          headers: { Authorization: `Bearer ${token}` }
+        await mockFetch('/api/categories', {
+          method: 'POST',
+          body: JSON.stringify(formData)
         });
       }
       
@@ -179,13 +258,10 @@ const Settings = () => {
   };
 
   const handleDeleteCategory = async (id) => {
-    if (!confirm('Are you sure? This may affect existing tickets.')) return;
+    if (!window.confirm('Are you sure? This may affect existing tickets.')) return;
     
     try {
-      const token = localStorage.getItem('token');
-      await axios.delete(`/api/categories/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      await mockFetch(`/api/categories/${id}`, { method: 'DELETE' });
       fetchCategories();
     } catch (error) {
       console.error('Error deleting category:', error);
@@ -216,16 +292,17 @@ const Settings = () => {
 
   const handleSeveritySubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token');
     
     try {
       if (editingItem) {
-        await axios.put(`/api/severities/${editingItem.id}`, formData, {
-          headers: { Authorization: `Bearer ${token}` }
+        await mockFetch(`/api/severities/${editingItem.id}`, {
+          method: 'PUT',
+          body: JSON.stringify(formData)
         });
       } else {
-        await axios.post('/api/severities', formData, {
-          headers: { Authorization: `Bearer ${token}` }
+        await mockFetch('/api/severities', {
+          method: 'POST',
+          body: JSON.stringify(formData)
         });
       }
       
@@ -238,13 +315,10 @@ const Settings = () => {
   };
 
   const handleDeleteSeverity = async (id) => {
-    if (!confirm('Are you sure? This may affect existing tickets.')) return;
+    if (!window.confirm('Are you sure? This may affect existing tickets.')) return;
     
     try {
-      const token = localStorage.getItem('token');
-      await axios.delete(`/api/severities/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      await mockFetch(`/api/severities/${id}`, { method: 'DELETE' });
       fetchSeverityLevels();
     } catch (error) {
       console.error('Error deleting severity level:', error);
