@@ -9,6 +9,7 @@ const CreateTicketForm = () => {
   const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [useMockData, setUseMockData] = useState(false);
   
   const [formData, setFormData] = useState({
     title: '',
@@ -16,6 +17,16 @@ const CreateTicketForm = () => {
     departmentId: '',
     severityLevel: 'Low',
   });
+
+  // Mock departments data
+  const mockDepartments = [
+    { id: '1', name: 'IT Support' },
+    { id: '2', name: 'Human Resources' },
+    { id: '3', name: 'Finance' },
+    { id: '4', name: 'Facilities' },
+    { id: '5', name: 'Marketing' },
+    { id: '6', name: 'Operations' }
+  ];
 
   useEffect(() => {
     const fetchDepartments = async () => {
@@ -32,13 +43,18 @@ const CreateTicketForm = () => {
         
         const data = await response.json();
         setDepartments(data);
+        setUseMockData(false);
         
         if (data.length > 0) {
           setFormData(prev => ({ ...prev, departmentId: data[0].id }));
         }
       } catch (err) {
         console.error('Error fetching departments:', err);
-        setError('Could not load departments. Please try again later.');
+        // Use mock data when API fails
+        setDepartments(mockDepartments);
+        setUseMockData(true);
+        setFormData(prev => ({ ...prev, departmentId: mockDepartments[0].id }));
+        setError('');
       }
     };
     
@@ -152,6 +168,11 @@ const CreateTicketForm = () => {
               ))
             )}
           </select>
+          {useMockData && (
+            <p className="text-sm text-orange-600 mt-1">
+              Using demo data - API connection issues detected
+            </p>
+          )}
         </div>
         
         <div className="mb-6">

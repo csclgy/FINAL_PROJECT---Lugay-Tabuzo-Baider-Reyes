@@ -20,8 +20,43 @@ const Reports = () => {
   const [dateRange, setDateRange] = useState('month'); // week, month, year
   const [reportType, setReportType] = useState('status'); // status, severity, department, agent
   const [ticketData, setTicketData] = useState([]);
+  const [useMockData, setUseMockData] = useState(false);
   
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
+  
+  // Mock data for different report types
+  const getMockData = (type) => {
+    const mockDataMap = {
+      status: [
+        { name: 'Open', value: 45 },
+        { name: 'In Progress', value: 32 },
+        { name: 'Resolved', value: 78 },
+        { name: 'Closed', value: 156 }
+      ],
+      severity: [
+        { name: 'Low', value: 89 },
+        { name: 'Medium', value: 67 },
+        { name: 'High', value: 34 },
+        { name: 'Critical', value: 12 }
+      ],
+      department: [
+        { name: 'IT Support', value: 78 },
+        { name: 'Human Resources', value: 23 },
+        { name: 'Finance', value: 45 },
+        { name: 'Facilities', value: 34 },
+        { name: 'Marketing', value: 19 }
+      ],
+      agent: [
+        { name: 'John Smith', value: 67 },
+        { name: 'Sarah Johnson', value: 54 },
+        { name: 'Mike Wilson', value: 43 },
+        { name: 'Emma Davis', value: 38 },
+        { name: 'David Brown', value: 29 }
+      ]
+    };
+    
+    return mockDataMap[type] || [];
+  };
   
   useEffect(() => {
     fetchReportData();
@@ -34,10 +69,18 @@ const Reports = () => {
       const response = await axios.get(`/api/reports?type=${reportType}&range=${dateRange}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setTicketData(response.data);
+      
+      // Ensure response data is an array
+      const data = Array.isArray(response.data) ? response.data : [];
+      setTicketData(data);
+      setUseMockData(false);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching report data:', error);
+      // Use mock data when API fails
+      const mockData = getMockData(reportType);
+      setTicketData(mockData);
+      setUseMockData(true);
       setLoading(false);
     }
   };
@@ -62,7 +105,7 @@ const Reports = () => {
       link.remove();
     } catch (error) {
       console.error('Error exporting report:', error);
-      alert('Failed to export report');
+      alert('Failed to export report. Using demo data for display.');
     }
   };
   
@@ -112,7 +155,7 @@ const Reports = () => {
           fill="#8884d8"
           dataKey="value"
         >
-          {ticketData.map((entry, index) => (
+          {Array.isArray(ticketData) && ticketData.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
@@ -134,6 +177,12 @@ const Reports = () => {
           Export CSV
         </button>
       </div>
+      
+      {useMockData && (
+        <div className="bg-orange-100 border border-orange-400 text-orange-700 px-4 py-3 rounded mb-4">
+          <p>Using demo data - API connection issues detected</p>
+        </div>
+      )}
       
       <div className="bg-white rounded-lg shadow p-6 mb-6">
         <div className="flex flex-wrap items-center gap-4 mb-6">
@@ -208,7 +257,7 @@ const Reports = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {ticketData.map((item, index) => {
+              {Array.isArray(ticketData) && ticketData.map((item, index) => {
                 const total = ticketData.reduce((sum, current) => sum + current.value, 0);
                 const percentage = total > 0 ? ((item.value / total) * 100).toFixed(1) : 0;
                 
@@ -226,17 +275,19 @@ const Reports = () => {
                   </tr>
                 );
               })}
-              <tr className="bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
-                  Total
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
-                  {ticketData.reduce((sum, item) => sum + item.value, 0)}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
-                  100%
-                </td>
-              </tr>
+              {Array.isArray(ticketData) && ticketData.length > 0 && (
+                <tr className="bg-gray-50">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
+                    Total
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
+                    {ticketData.reduce((sum, item) => sum + item.value, 0)}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
+                    100%
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
