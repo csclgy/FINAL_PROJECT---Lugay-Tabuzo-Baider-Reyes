@@ -8,10 +8,18 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-    const [ user, setUser ] = useState(null);
-    const [ token, setToken ] = useState(localStorage.getItem('token') || null);
-    const [ loading, setLoading ] = useState(true);
+    const [user, setUser] = useState(null);
+    const [token, setToken] = useState(localStorage.getItem('token') || null);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+
+    const isDevMode = () => {
+        return process.env.NODE_ENV === 'development';
+    };
+
+    const isDevToken = (tokenToCheck) => {
+        return tokenToCheck === 'dev-mock-token';
+    };
 
     //axios defaults
     useEffect(() => {
@@ -30,6 +38,23 @@ export const AuthProvider = ({ children }) => {
                 return;
             }
 
+            if (isDevMode() && isDevToken(token)) {
+                const storedUser = localStorage.getItem('user');
+                if (storedUser) {
+                    try {
+                        const userData = JSON.parse(storedUser);
+                        setUser(userData);
+                        console.log('Dev mode: User loaded from localStorage', userData);
+                    } catch (error) {
+                        console.error('Error parsing stored user data:', error);
+                        logout();
+                    }
+                }
+                setLoading(false);
+                return;
+            }
+
+            // Regular token verification for production
             try {
                 const response = await axios.get('/api/auth/me');
                 setUser(response.data);
@@ -42,17 +67,42 @@ export const AuthProvider = ({ children }) => {
         };
 
         verifyToken();
-    }, []);
+    }, [token]);
 
     const login = async (credentials) => {
         try {
             setLoading(true);
-            const response = await axios.post('/api/auth/login', credentials);
-            const { token, user } = response.data;
 
-            setToken(token);
-            setUser(user);
-            localStorage.setItem('token', token);
+            if (isDevMode() && 
+                credentials.email === 'email@gmail.com' && 
+                credentials.password === 'password') {
+                
+                const devUser = {
+                    id: 'dev-user',
+                    name: 'Development User',
+                    email: 'email@gmail.com',
+                    role: 'Admin'
+                };
+                
+                const devToken = 'dev-mock-token';
+                
+                setToken(devToken);
+                setUser(devUser);
+                localStorage.setItem('token', devToken);
+                localStorage.setItem('user', JSON.stringify(devUser));
+
+                toast.success('Dev mode login successful!');
+                navigate('/');
+                return { success: true };
+            }
+
+            const response = await axios.post('/api/auth/login', credentials);
+            const { token: newToken, user: userData } = response.data;
+
+            setToken(newToken);
+            setUser(userData);
+            localStorage.setItem('token', newToken);
+            localStorage.setItem('user', JSON.stringify(userData));
 
             toast.success('Login successful!');
             navigate('/');
@@ -70,17 +120,18 @@ export const AuthProvider = ({ children }) => {
         try {
             setLoading(true);
             const response = await axios.post('/api/auth/register', userData);
-            const { token, user } = response.data;
+            const { token: newToken, user } = response.data;
 
-            setToken(token);
+            setToken(newToken);
             setUser(user);
-            localStorage.setItem('token', token);
+            localStorage.setItem('token', newToken);
+            localStorage.setItem('user', JSON.stringify(user));
 
             toast.success('Registration successful!');
             navigate('/');
             return { success: true };
         } catch (error) {
-            const message = error.response?.data?.message || 'Login failed. Please try again.';
+            const message = error.response?.data?.message || 'Registration failed. Please try again.';
             toast.error(message);
             return { success: false, message };
         } finally {
@@ -92,6 +143,8 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         setToken(null);
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        delete axios.defaults.headers.common['Authorization'];
         navigate('/login');
         toast.success('Logged out successfully');
     };
@@ -101,6 +154,7 @@ export const AuthProvider = ({ children }) => {
     const value = {
         user,
         token,
+        authToken: token,
         login,
         register,
         logout,

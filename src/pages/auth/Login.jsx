@@ -12,14 +12,6 @@ const Login = () => {
   });
   const [errors, setErrors] = useState({});
   const [loginMessage, setLoginMessage] = useState('');
-  const [devMode, setDevMode] = useState(false);
-
-  //CHECK DEVMODE
-  useEffect(() => {
-    const isDevMode = process.env.NODE_ENV === 'development' &&
-                      sessionStorage.getItem('devMode') === 'true';
-    setDevMode(isDevMode);
-  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -56,27 +48,6 @@ const Login = () => {
     e.preventDefault();
     
     if (!validate()) return;
-
-    if (process.env.NODE_ENV === 'development' &&
-      formData.email === 'email@gmail.com' &&
-      formData.password === 'password'
-    ) {
-      localStorage.setItem('token', 'dev-mock-token');
-      localStorage.setItem('user', JSON.stringify({
-        id: 'dev-user',
-        name: 'Development User',
-        email: 'email@gmail.com',
-        role: 'Admin'
-      }));
-      
-      setLoginMessage('Login successful with demo credentials!');
-
-      setTimeout(() => {
-        window.location.href = '/dashboard';
-      }, 1000);
-
-      return;
-    }
     
     const credentials = {
       email: formData.email,
@@ -164,6 +135,12 @@ const Login = () => {
           </div>
         </div>
 
+        {loginMessage && (
+          <div className={`p-3 rounded ${loginMessage.includes('successful') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+            {loginMessage}
+          </div>
+        )}
+
         <div>
           <button
             type="submit"
@@ -189,7 +166,7 @@ const Login = () => {
               Fill Demo Credentials
             </button>
             <p className="text-xs text-gray-600 mt-2">
-              Demo email: demo@example.com<br />
+              Demo email: email@gmail.com<br />
               Demo password: password
             </p>
           </div>

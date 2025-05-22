@@ -27,28 +27,70 @@ const TicketList = () => {
           ? '/api/tickets' 
           : `/api/tickets/user/${user.id}`;
         
+        console.log('Fetching from endpoint:', endpoint);
+        console.log('Auth token:', authToken ? 'Present' : 'Missing');
+        console.log('User:', user);
+        
         const response = await fetch(endpoint, {
           headers: {
-            'Authorization': `Bearer ${authToken}`
+            'Authorization': `Bearer ${authToken}`,
+            'Content-Type': 'application/json'
           }
         });
         
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers);
+        
         if (!response.ok) {
-          throw new Error('Failed to fetch tickets');
+          // Log the actual response text to see what we're getting
+          const responseText = await response.text();
+          console.error('Response text:', responseText);
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        // Check if response is actually JSON
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const responseText = await response.text();
+          console.error('Expected JSON but got:', contentType);
+          console.error('Response body:', responseText);
+          throw new Error('Server returned non-JSON response');
         }
         
         const data = await response.json();
+        console.log('Fetched tickets:', data);
         setTickets(data);
         setFilteredTickets(data);
       } catch (err) {
         console.error('Error fetching tickets:', err);
-        setError('Could not load tickets. Please try again later.');
+        
+        // Provide more specific error messages
+        if (err.message.includes('fetch')) {
+          setError('Network error: Unable to connect to server. Please check your connection.');
+        } else if (err.message.includes('JSON')) {
+          setError('Server error: Invalid response format. Please contact support.');
+        } else if (err.message.includes('HTTP 404')) {
+          setError('API endpoint not found. Please check your server configuration.');
+        } else if (err.message.includes('HTTP 401')) {
+          setError('Authentication failed. Please log in again.');
+        } else if (err.message.includes('HTTP 403')) {
+          setError('Access denied. You may not have permission to view tickets.');
+        } else {
+          setError(`Error loading tickets: ${err.message}`);
+        }
       } finally {
         setLoading(false);
       }
     };
     
-    fetchTickets();
+    // Only fetch if we have user and authToken
+    if (user && authToken) {
+      fetchTickets();
+    } else {
+      console.log('Missing user or auth token:', { user: !!user, authToken: !!authToken });
+      setError('Authentication required. Please log in.');
+      setLoading(false);
+    }
   }, [authToken, user]);
 
   useEffect(() => {
@@ -140,6 +182,12 @@ const TicketList = () => {
     return (
       <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
         <p>{error}</p>
+        <button 
+          onClick={() => window.location.reload()} 
+          className="mt-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm"
+        >
+          Retry
+        </button>
       </div>
     );
   }
