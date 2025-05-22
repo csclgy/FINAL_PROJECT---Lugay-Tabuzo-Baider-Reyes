@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Edit2Icon, TrashIcon, UserPlusIcon } from 'lucide-react';
+import { Edit2, Trash, UserPlus } from 'lucide-react';
 import axios from 'axios';
 
 const UsersManagement = () => {
@@ -16,6 +16,7 @@ const UsersManagement = () => {
     department: '',
   });
   const [departments, setDepartments] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchUsers();
@@ -25,14 +26,19 @@ const UsersManagement = () => {
   const fetchUsers = async () => {
     try {
       setLoading(true);
+      setError(null);
       const token = localStorage.getItem('token');
       const response = await axios.get('/api/users', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setUsers(response.data);
+      
+      const userData = Array.isArray(response.data) ? response.data : [];
+      setUsers(userData);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching users:', error);
+      setError('Failed to load users. Please try again.');
+      setUsers([]);
       setLoading(false);
     }
   };
@@ -43,9 +49,12 @@ const UsersManagement = () => {
       const response = await axios.get('/api/departments', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setDepartments(response.data);
+      
+      const departmentData = Array.isArray(response.data) ? response.data : [];
+      setDepartments(departmentData);
     } catch (error) {
       console.error('Error fetching departments:', error);
+      setDepartments([]);
     }
   };
 
@@ -130,10 +139,22 @@ const UsersManagement = () => {
           onClick={openCreateModal}
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center"
         >
-          <UserPlusIcon className="w-5 h-5 mr-2" />
+          <UserPlus className="w-5 h-5 mr-2" />
           Add New User
         </button>
       </div>
+
+      {error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+          {error}
+          <button 
+            onClick={fetchUsers}
+            className="ml-2 text-red-800 underline hover:no-underline"
+          >
+            Retry
+          </button>
+        </div>
+      )}
 
       {loading ? (
         <div className="flex justify-center">
@@ -153,46 +174,54 @@ const UsersManagement = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {users.map((user) => (
-                <tr key={user.id}>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="font-medium text-gray-900">{user.fullName}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {user.username}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {user.email}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                      ${user.role === 'Admin' ? 'bg-purple-100 text-purple-800' : ''}
-                      ${user.role === 'Supervisor' ? 'bg-blue-100 text-blue-800' : ''}
-                      ${user.role === 'Support' ? 'bg-green-100 text-green-800' : ''}
-                      ${user.role === 'User' ? 'bg-gray-100 text-gray-800' : ''}
-                    `}>
-                      {user.role}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {user.departmentName}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <button 
-                      onClick={() => openEditModal(user)}
-                      className="text-indigo-600 hover:text-indigo-900 mr-4"
-                    >
-                      <Edit2Icon className="w-5 h-5" />
-                    </button>
-                    <button 
-                      onClick={() => handleDeleteUser(user.id)}
-                      className="text-red-600 hover:text-red-900"
-                    >
-                      <TrashIcon className="w-5 h-5" />
-                    </button>
+              {users.length > 0 ? (
+                users.map((user) => (
+                  <tr key={user.id}>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="font-medium text-gray-900">{user.fullName}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {user.username}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {user.email}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                        ${user.role === 'Admin' ? 'bg-purple-100 text-purple-800' : ''}
+                        ${user.role === 'Supervisor' ? 'bg-blue-100 text-blue-800' : ''}
+                        ${user.role === 'Support' ? 'bg-green-100 text-green-800' : ''}
+                        ${user.role === 'User' ? 'bg-gray-100 text-gray-800' : ''}
+                      `}>
+                        {user.role}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {user.departmentName}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <button 
+                        onClick={() => openEditModal(user)}
+                        className="text-indigo-600 hover:text-indigo-900 mr-4"
+                      >
+                        <Edit2 className="w-5 h-5" />
+                      </button>
+                      <button 
+                        onClick={() => handleDeleteUser(user.id)}
+                        className="text-red-600 hover:text-red-900"
+                      >
+                        <Trash className="w-5 h-5" />
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6" className="px-6 py-4 text-center text-sm text-gray-500">
+                    No users found. Add a user to get started.
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
@@ -205,7 +234,7 @@ const UsersManagement = () => {
               {editingUser ? 'Edit User' : 'Create New User'}
             </h2>
             
-            <form onSubmit={handleSubmit}>
+            <div onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
                   Full Name
@@ -291,11 +320,15 @@ const UsersManagement = () => {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 >
-                  {departments.map(dept => (
-                    <option key={dept.id} value={dept.id}>
-                      {dept.name}
-                    </option>
-                  ))}
+                  {departments.length > 0 ? (
+                    departments.map(dept => (
+                      <option key={dept.id} value={dept.id}>
+                        {dept.name}
+                      </option>
+                    ))
+                  ) : (
+                    <option value="">No departments available</option>
+                  )}
                 </select>
               </div>
 
@@ -308,13 +341,14 @@ const UsersManagement = () => {
                   Cancel
                 </button>
                 <button
-                  type="submit"
+                  type="button"
+                  onClick={handleSubmit}
                   className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
                 >
                   {editingUser ? 'Update' : 'Create'}
                 </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       )}

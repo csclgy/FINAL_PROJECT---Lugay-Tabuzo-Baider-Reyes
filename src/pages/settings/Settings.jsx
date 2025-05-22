@@ -9,7 +9,6 @@ const Settings = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  // For adding/editing
   const [showDepartmentModal, setShowDepartmentModal] = useState(false);
   const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [showSeverityModal, setShowSeverityModal] = useState(false);
