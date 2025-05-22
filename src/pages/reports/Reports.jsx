@@ -24,38 +24,204 @@ const Reports = () => {
   
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
   
-  // Mock data for different report types
+  // Mock tickets data
+  const mockTickets = [
+    {
+      id: '1',
+      ticketNumber: 'TK-2025-001',
+      title: 'Email service is down',
+      description: 'Unable to send or receive emails through Outlook',
+      status: 'New',
+      severityLevel: 'High',
+      createdAt: '2025-05-22T08:30:00Z',
+      createdById: 'user1',
+      createdByName: 'John Smith',
+      departmentId: 'dept1',
+      departmentName: 'IT Support'
+    },
+    {
+      id: '2',
+      ticketNumber: 'TK-2025-002',
+      title: 'New user onboarding issue',
+      description: 'New employee needs access to company systems',
+      status: 'InProgress',
+      severityLevel: 'Medium',
+      createdAt: '2025-05-21T14:45:00Z',
+      createdById: 'user2',
+      createdByName: 'Sarah Johnson',
+      departmentId: 'dept2',
+      departmentName: 'Human Resources'
+    },
+    {
+      id: '3',
+      ticketNumber: 'TK-2025-003',
+      title: 'Office printer not responding',
+      description: 'Canon printer on 3rd floor is showing error codes',
+      status: 'OnHold',
+      severityLevel: 'Low',
+      createdAt: '2025-05-20T09:15:00Z',
+      createdById: 'user3',
+      createdByName: 'Mike Davis',
+      departmentId: 'dept3',
+      departmentName: 'Operations'
+    },
+    {
+      id: '4',
+      ticketNumber: 'TK-2025-004',
+      title: 'Website contact form broken',
+      description: 'Contact form submissions are not being received',
+      status: 'Resolved',
+      severityLevel: 'Medium',
+      createdAt: '2025-05-19T16:20:00Z',
+      createdById: 'user4',
+      createdByName: 'Lisa Chen',
+      departmentId: 'dept4',
+      departmentName: 'Marketing'
+    },
+    {
+      id: '5',
+      ticketNumber: 'TK-2025-005',
+      title: 'Payroll processing error',
+      description: 'Error in salary calculations for April payroll',
+      status: 'Closed',
+      severityLevel: 'Critical',
+      createdAt: '2025-05-18T11:05:00Z',
+      createdById: 'user5',
+      createdByName: 'Robert Wilson',
+      departmentId: 'dept5',
+      departmentName: 'Finance'
+    },
+    {
+      id: '6',
+      ticketNumber: 'TK-2025-006',
+      title: 'VPN connection issues',
+      description: 'Unable to connect to company VPN from home',
+      status: 'New',
+      severityLevel: 'High',
+      createdAt: '2025-05-17T10:30:00Z',
+      createdById: 'user6',
+      createdByName: 'Emma Brown',
+      departmentId: 'dept1',
+      departmentName: 'IT Support'
+    },
+    {
+      id: '7',
+      ticketNumber: 'TK-2025-007',
+      title: 'Software license renewal',
+      description: 'Adobe Creative Suite licenses expiring next month',
+      status: 'InProgress',
+      severityLevel: 'Medium',
+      createdAt: '2025-05-16T13:20:00Z',
+      createdById: 'user7',
+      createdByName: 'David Garcia',
+      departmentId: 'dept4',
+      departmentName: 'Marketing'
+    },
+    {
+      id: '8',
+      ticketNumber: 'TK-2025-008',
+      title: 'Database backup failure',
+      description: 'Automated backup process failed last night',
+      status: 'New',
+      severityLevel: 'Critical',
+      createdAt: '2025-05-15T07:45:00Z',
+      createdById: 'user8',
+      createdByName: 'Jennifer Martinez',
+      departmentId: 'dept1',
+      departmentName: 'IT Support'
+    },
+    {
+      id: '9',
+      ticketNumber: 'TK-2025-009',
+      title: 'Conference room booking system',
+      description: 'Unable to book conference rooms through the portal',
+      status: 'OnHold',
+      severityLevel: 'Low',
+      createdAt: '2025-05-14T15:10:00Z',
+      createdById: 'user9',
+      createdByName: 'Chris Anderson',
+      departmentId: 'dept3',
+      departmentName: 'Operations'
+    },
+    {
+      id: '10',
+      ticketNumber: 'TK-2025-010',
+      title: 'Employee benefits portal access',
+      description: 'Cannot log into benefits portal to update information',
+      status: 'Resolved',
+      severityLevel: 'Medium',
+      createdAt: '2025-05-13T12:00:00Z',
+      createdById: 'user10',
+      createdByName: 'Amy Taylor',
+      departmentId: 'dept2',
+      departmentName: 'Human Resources'
+    },
+    {
+      id: '11',
+      ticketNumber: 'TK-2025-011',
+      title: 'Security badge replacement',
+      description: 'Lost security badge, need replacement',
+      status: 'New',
+      severityLevel: 'Low',
+      createdAt: '2025-05-12T09:30:00Z',
+      createdById: 'user11',
+      createdByName: 'Kevin Thompson',
+      departmentId: 'dept6',
+      departmentName: 'Security'
+    },
+    {
+      id: '12',
+      ticketNumber: 'TK-2025-012',
+      title: 'Server performance issues',
+      description: 'Application server running slow during peak hours',
+      status: 'InProgress',
+      severityLevel: 'High',
+      createdAt: '2025-05-11T16:45:00Z',
+      createdById: 'user12',
+      createdByName: 'Nicole White',
+      departmentId: 'dept1',
+      departmentName: 'IT Support'
+    }
+  ];
+
+  // Generate report data from mock tickets
   const getMockData = (type) => {
-    const mockDataMap = {
-      status: [
-        { name: 'Open', value: 45 },
-        { name: 'In Progress', value: 32 },
-        { name: 'Resolved', value: 78 },
-        { name: 'Closed', value: 156 }
-      ],
-      severity: [
-        { name: 'Low', value: 89 },
-        { name: 'Medium', value: 67 },
-        { name: 'High', value: 34 },
-        { name: 'Critical', value: 12 }
-      ],
-      department: [
-        { name: 'IT Support', value: 78 },
-        { name: 'Human Resources', value: 23 },
-        { name: 'Finance', value: 45 },
-        { name: 'Facilities', value: 34 },
-        { name: 'Marketing', value: 19 }
-      ],
-      agent: [
-        { name: 'John Smith', value: 67 },
-        { name: 'Sarah Johnson', value: 54 },
-        { name: 'Mike Wilson', value: 43 },
-        { name: 'Emma Davis', value: 38 },
-        { name: 'David Brown', value: 29 }
-      ]
-    };
+    const countMap = {};
     
-    return mockDataMap[type] || [];
+    switch (type) {
+      case 'status':
+        mockTickets.forEach(ticket => {
+          const status = ticket.status;
+          countMap[status] = (countMap[status] || 0) + 1;
+        });
+        break;
+        
+      case 'severity':
+        mockTickets.forEach(ticket => {
+          const severity = ticket.severityLevel;
+          countMap[severity] = (countMap[severity] || 0) + 1;
+        });
+        break;
+        
+      case 'department':
+        mockTickets.forEach(ticket => {
+          const dept = ticket.departmentName;
+          countMap[dept] = (countMap[dept] || 0) + 1;
+        });
+        break;
+        
+      case 'agent':
+        mockTickets.forEach(ticket => {
+          const agent = ticket.createdByName;
+          countMap[agent] = (countMap[agent] || 0) + 1;
+        });
+        break;
+        
+      default:
+        return [];
+    }
+    
+    return Object.entries(countMap).map(([name, value]) => ({ name, value }));
   };
   
   useEffect(() => {

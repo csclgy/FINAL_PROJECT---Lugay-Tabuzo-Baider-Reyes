@@ -4,8 +4,170 @@ import { useAuth } from '../../contexts/AuthContext';
 import RemarksList from '../../components/RemarksList';
 import AddRemarkForm from '../../components/AddRemarkForm';
 
+// Mock data
+const mockTickets = [
+  {
+    id: '1',
+    ticketNumber: 'TK-2025-001',
+    title: 'Email service is down',
+    description: 'Unable to send or receive emails through Outlook',
+    status: 'New',
+    severityLevel: 'High',
+    createdAt: '2025-05-22T08:30:00Z',
+    createdById: 'user1',
+    createdByName: 'John Smith',
+    departmentId: 'dept1',
+    departmentName: 'IT Support'
+  },
+  {
+    id: '2',
+    ticketNumber: 'TK-2025-002',
+    title: 'New user onboarding issue',
+    description: 'New employee needs access to company systems',
+    status: 'InProgress',
+    severityLevel: 'Medium',
+    createdAt: '2025-05-21T14:45:00Z',
+    createdById: 'user2',
+    createdByName: 'Sarah Johnson',
+    departmentId: 'dept2',
+    departmentName: 'Human Resources'
+  },
+  {
+    id: '3',
+    ticketNumber: 'TK-2025-003',
+    title: 'Office printer not responding',
+    description: 'Canon printer on 3rd floor is showing error codes',
+    status: 'OnHold',
+    severityLevel: 'Low',
+    createdAt: '2025-05-20T09:15:00Z',
+    createdById: 'user3',
+    createdByName: 'Mike Davis',
+    departmentId: 'dept3',
+    departmentName: 'Operations'
+  },
+  {
+    id: '4',
+    ticketNumber: 'TK-2025-004',
+    title: 'Website contact form broken',
+    description: 'Contact form submissions are not being received',
+    status: 'Resolved',
+    severityLevel: 'Medium',
+    createdAt: '2025-05-19T16:20:00Z',
+    createdById: 'user4',
+    createdByName: 'Lisa Chen',
+    departmentId: 'dept4',
+    departmentName: 'Marketing'
+  },
+  {
+    id: '5',
+    ticketNumber: 'TK-2025-005',
+    title: 'Payroll processing error',
+    description: 'Error in salary calculations for April payroll',
+    status: 'Closed',
+    severityLevel: 'Critical',
+    createdAt: '2025-05-18T11:05:00Z',
+    createdById: 'user5',
+    createdByName: 'Robert Wilson',
+    departmentId: 'dept5',
+    departmentName: 'Finance'
+  },
+  {
+    id: '6',
+    ticketNumber: 'TK-2025-006',
+    title: 'VPN connection issues',
+    description: 'Unable to connect to company VPN from home',
+    status: 'New',
+    severityLevel: 'High',
+    createdAt: '2025-05-17T10:30:00Z',
+    createdById: 'user6',
+    createdByName: 'Emma Brown',
+    departmentId: 'dept1',
+    departmentName: 'IT Support'
+  },
+  {
+    id: '7',
+    ticketNumber: 'TK-2025-007',
+    title: 'Software license renewal',
+    description: 'Adobe Creative Suite licenses expiring next month',
+    status: 'InProgress',
+    severityLevel: 'Medium',
+    createdAt: '2025-05-16T13:20:00Z',
+    createdById: 'user7',
+    createdByName: 'David Garcia',
+    departmentId: 'dept4',
+    departmentName: 'Marketing'
+  },
+  {
+    id: '8',
+    ticketNumber: 'TK-2025-008',
+    title: 'Database backup failure',
+    description: 'Automated backup process failed last night',
+    status: 'New',
+    severityLevel: 'Critical',
+    createdAt: '2025-05-15T07:45:00Z',
+    createdById: 'user8',
+    createdByName: 'Jennifer Martinez',
+    departmentId: 'dept1',
+    departmentName: 'IT Support'
+  },
+  {
+    id: '9',
+    ticketNumber: 'TK-2025-009',
+    title: 'Conference room booking system',
+    description: 'Unable to book conference rooms through the portal',
+    status: 'OnHold',
+    severityLevel: 'Low',
+    createdAt: '2025-05-14T15:10:00Z',
+    createdById: 'user9',
+    createdByName: 'Chris Anderson',
+    departmentId: 'dept3',
+    departmentName: 'Operations'
+  },
+  {
+    id: '10',
+    ticketNumber: 'TK-2025-010',
+    title: 'Employee benefits portal access',
+    description: 'Cannot log into benefits portal to update information',
+    status: 'Resolved',
+    severityLevel: 'Medium',
+    createdAt: '2025-05-13T12:00:00Z',
+    createdById: 'user10',
+    createdByName: 'Amy Taylor',
+    departmentId: 'dept2',
+    departmentName: 'Human Resources'
+  },
+  {
+    id: '11',
+    ticketNumber: 'TK-2025-011',
+    title: 'Security badge replacement',
+    description: 'Lost security badge, need replacement',
+    status: 'New',
+    severityLevel: 'Low',
+    createdAt: '2025-05-12T09:30:00Z',
+    createdById: 'user11',
+    createdByName: 'Kevin Thompson',
+    departmentId: 'dept6',
+    departmentName: 'Security'
+  },
+  {
+    id: '12',
+    ticketNumber: 'TK-2025-012',
+    title: 'Server performance issues',
+    description: 'Application server running slow during peak hours',
+    status: 'InProgress',
+    severityLevel: 'High',
+    createdAt: '2025-05-11T16:45:00Z',
+    createdById: 'user12',
+    createdByName: 'Nicole White',
+    departmentId: 'dept1',
+    departmentName: 'IT Support'
+  }
+];
+
+const USE_MOCK_DATA = true;
+
 const TicketDetails = () => {
-  const { ticketId } = useParams();
+  const { id: ticketId } = useParams();
   const { authToken, user } = useAuth();
   const navigate = useNavigate();
   
@@ -25,20 +187,74 @@ const TicketDetails = () => {
   const statusOptions = ['New', 'InProgress', 'OnHold', 'Resolved', 'Closed'];
   const severityOptions = ['Low', 'Medium', 'High', 'Critical'];
 
+  const fetchMockTicket = (id) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // Add debugging logs
+        console.log('Searching for ticket with ID:', id, 'Type:', typeof id);
+        console.log('Available ticket IDs:', mockTickets.map(t => ({ id: t.id, type: typeof t.id })));
+        
+        const foundTicket = mockTickets.find(t => {
+          console.log('Comparing:', t.id, '===', id, '?', t.id === id);
+          return t.id === id;
+        });
+        
+        console.log('Found ticket:', foundTicket);
+        
+        if (foundTicket) {
+          resolve(foundTicket);
+        } else {
+          reject(new Error(`Ticket not found for ID: ${id}`));
+        }
+      }, 500);
+    });
+  };
+
+  const updateMockTicket = (id, updates) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const ticketIndex = mockTickets.findIndex(t => t.id === id);
+        if (ticketIndex !== -1) {
+          const updatedTicket = {
+            ...mockTickets[ticketIndex],
+            ...updates,
+            updatedAt: new Date().toISOString()
+          };
+          mockTickets[ticketIndex] = updatedTicket;
+          resolve(updatedTicket);
+        } else {
+          reject(new Error('Ticket not found'));
+        }
+      }, 500); // Simulate network delay
+    });
+  };
+
   useEffect(() => {
     const fetchTicketDetails = async () => {
       try {
-        const response = await fetch(`/api/tickets/${ticketId}`, {
-          headers: {
-            'Authorization': `Bearer ${authToken}`
-          }
-        });
+        // Add debugging log
+        console.log('Fetching ticket details for ID:', ticketId, 'Type:', typeof ticketId);
         
-        if (!response.ok) {
-          throw new Error('Failed to fetch ticket details');
+        let data;
+        
+        if (USE_MOCK_DATA) {
+          // Use mock data
+          data = await fetchMockTicket(ticketId);
+        } else {
+          // Use real API
+          const response = await fetch(`/api/tickets/${ticketId}`, {
+            headers: {
+              'Authorization': `Bearer ${authToken}`
+            }
+          });
+          
+          if (!response.ok) {
+            throw new Error('Failed to fetch ticket details');
+          }
+          
+          data = await response.json();
         }
         
-        const data = await response.json();
         setTicket(data);
         setFormData({
           title: data.title,
@@ -49,7 +265,7 @@ const TicketDetails = () => {
         });
       } catch (err) {
         console.error('Error fetching ticket details:', err);
-        setError('Could not load ticket details. Please try again later.');
+        setError(`Could not load ticket details: ${err.message}`);
       } finally {
         setLoading(false);
       }
@@ -71,23 +287,33 @@ const TicketDetails = () => {
     setLoading(true);
     
     try {
-      const response = await fetch(`/api/tickets/${ticketId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authToken}`
-        },
-        body: JSON.stringify(formData)
-      });
+      let updatedTicket;
       
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to update ticket');
+      if (USE_MOCK_DATA) {
+        // Use mock update
+        updatedTicket = await updateMockTicket(ticketId, formData);
+      } else {
+        // Use real API
+        const response = await fetch(`/api/tickets/${ticketId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
+          },
+          body: JSON.stringify(formData)
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Failed to update ticket');
+        }
+        
+        updatedTicket = await response.json();
       }
       
-      const updatedTicket = await response.json();
       setTicket(updatedTicket);
       setEditing(false);
+      setError(''); // Clear any previous errors
     } catch (err) {
       console.error('Error updating ticket:', err);
       setError(err.message || 'An error occurred while updating the ticket');
@@ -104,7 +330,7 @@ const TicketDetails = () => {
     );
   }
 
-  if (error) {
+  if (error && !ticket) {
     return (
       <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
         <p>{error}</p>
@@ -168,6 +394,12 @@ const TicketDetails = () => {
 
   return (
     <div className="bg-white shadow-md rounded-lg p-6 mb-6">
+      {USE_MOCK_DATA && (
+        <div className="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded mb-4">
+          <p className="text-sm">📝 Currently using mock data for demonstration</p>
+        </div>
+      )}
+      
       {editing ? (
         <div>
           <h2 className="text-xl font-semibold mb-4">Edit Ticket</h2>
@@ -300,8 +532,8 @@ const TicketDetails = () => {
           
           <div className="grid grid-cols-2 gap-4 mb-6">
             <div>
-              <p className="text-sm text-gray-600">Ticket ID</p>
-              <p className="font-medium">{ticket.id}</p>
+              <p className="text-sm text-gray-600">Ticket Number</p>
+              <p className="font-medium">{ticket.ticketNumber}</p>
             </div>
             <div>
               <p className="text-sm text-gray-600">Department</p>

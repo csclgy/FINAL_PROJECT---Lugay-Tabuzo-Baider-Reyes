@@ -1,7 +1,46 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
-const RemarksList = ({ ticketId }) => {
+// Mock data for development/testing
+const mockRemarks = [
+  {
+    id: 1,
+    content: "Customer reported that the login issue occurs specifically when using Chrome browser. They've cleared cache and cookies but the problem persists.",
+    createdAt: "2024-05-20T10:30:00Z",
+    createdByName: "John Smith",
+    isInternal: false
+  },
+  {
+    id: 2,
+    content: "Internal note: This appears to be related to the Chrome extension conflict we've seen before. Need to check if customer has any ad blockers or security extensions installed.",
+    createdAt: "2024-05-20T11:15:00Z",
+    createdByName: "Sarah Johnson",
+    isInternal: true
+  },
+  {
+    id: 3,
+    content: "Update: Customer confirmed they have AdBlock Plus installed. Provided instructions to whitelist our domain. Waiting for customer to test and confirm.",
+    createdAt: "2024-05-20T14:22:00Z",
+    createdByName: "Mike Wilson",
+    isInternal: false
+  },
+  {
+    id: 4,
+    content: "Great news! The issue is resolved after whitelisting the domain. Customer can now log in successfully. Marking this as resolved.",
+    createdAt: "2024-05-20T16:45:00Z",
+    createdByName: "John Smith",
+    isInternal: false
+  },
+  {
+    id: 5,
+    content: "Internal follow-up: Added this to our FAQ section under common browser issues. Also updated our troubleshooting guide to include checking for browser extensions.",
+    createdAt: "2024-05-20T17:10:00Z",
+    createdByName: "Sarah Johnson",
+    isInternal: true
+  }
+];
+
+const RemarksList = ({ ticketId, useMockData = false }) => {
   const { authToken } = useAuth();
   const [remarks, setRemarks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,6 +48,14 @@ const RemarksList = ({ ticketId }) => {
 
   useEffect(() => {
     const fetchRemarks = async () => {
+      if (useMockData || process.env.NODE_ENV === 'development') {
+        setTimeout(() => {
+          setRemarks(mockRemarks);
+          setLoading(false);
+        }, 1000);
+        return;
+      }
+
       try {
         const response = await fetch(`/api/tickets/${ticketId}/remarks`, {
           headers: {
@@ -25,13 +72,16 @@ const RemarksList = ({ ticketId }) => {
       } catch (err) {
         console.error('Error fetching remarks:', err);
         setError('Could not load remarks. Please try again later.');
+        
+        console.log('Falling back to mock data due to API error');
+        setRemarks(mockRemarks);
       } finally {
         setLoading(false);
       }
     };
     
     fetchRemarks();
-  }, [ticketId, authToken]);
+  }, [ticketId, authToken, useMockData]);
 
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A';
@@ -54,7 +104,7 @@ const RemarksList = ({ ticketId }) => {
     );
   }
 
-  if (error) {
+  if (error && remarks.length === 0) {
     return (
       <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded my-4">
         <p>{error}</p>
@@ -72,6 +122,12 @@ const RemarksList = ({ ticketId }) => {
 
   return (
     <div className="space-y-4 mb-6">
+      {error && (
+        <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-4">
+          <p>API Error: {error}. Showing mock data for development.</p>
+        </div>
+      )}
+      
       {remarks.map((remark) => (
         <div key={remark.id} className="bg-gray-50 p-4 rounded-lg">
           <div className="flex justify-between items-start mb-2">
