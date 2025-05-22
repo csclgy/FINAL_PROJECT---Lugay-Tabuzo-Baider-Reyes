@@ -12,17 +12,16 @@ import {
   Pie,
   Cell
 } from 'recharts';
-import axios from 'axios';
-import { DownloadIcon, FilterIcon } from 'lucide-react';
+import { Download, Filter } from 'lucide-react';
 
 const Reports = () => {
   const [loading, setLoading] = useState(true);
   const [dateRange, setDateRange] = useState('month'); // week, month, year
   const [reportType, setReportType] = useState('status'); // status, severity, department, agent
   const [ticketData, setTicketData] = useState([]);
-  const [useMockData, setUseMockData] = useState(false);
+  const [useMockData, setUseMockData] = useState(true);
   
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d', '#ffc658'];
   
   // Mock tickets data
   const mockTickets = [
@@ -184,7 +183,6 @@ const Reports = () => {
     }
   ];
 
-  // Generate report data from mock tickets
   const getMockData = (type) => {
     const countMap = {};
     
@@ -221,7 +219,11 @@ const Reports = () => {
         return [];
     }
     
-    return Object.entries(countMap).map(([name, value]) => ({ name, value }));
+    const result = Object.entries(countMap)
+      .map(([name, value]) => ({ name, value }))
+      .sort((a, b) => b.value - a.value);
+    
+    return result;
   };
   
   useEffect(() => {
@@ -230,49 +232,47 @@ const Reports = () => {
   
   const fetchReportData = async () => {
     setLoading(true);
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get(`/api/reports?type=${reportType}&range=${dateRange}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      
-      // Ensure response data is an array
-      const data = Array.isArray(response.data) ? response.data : [];
-      setTicketData(data);
-      setUseMockData(false);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching report data:', error);
-      // Use mock data when API fails
-      const mockData = getMockData(reportType);
-      setTicketData(mockData);
-      setUseMockData(true);
-      setLoading(false);
-    }
+    
+    setTimeout(() => {
+      try {
+        //TODO: ADD REAL API CONNECTION
+        const mockData = getMockData(reportType);
+        setTicketData(mockData);
+        setUseMockData(true);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching report data:', error);
+        const mockData = getMockData(reportType);
+        setTicketData(mockData);
+        setUseMockData(true);
+        setLoading(false);
+      }
+    }, 500);
   };
   
-  const exportCsvReport = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get(
-        `/api/reports/export?type=${reportType}&range=${dateRange}`, 
-        {
-          headers: { Authorization: `Bearer ${token}` },
-          responseType: 'blob'
-        }
-      );
-      
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', `ticket-report-${reportType}-${dateRange}.csv`);
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    } catch (error) {
-      console.error('Error exporting report:', error);
-      alert('Failed to export report. Using demo data for display.');
-    }
+  const exportCsvReport = () => {
+    const headers = ['Category', 'Count', 'Percentage'];
+    const total = ticketData.reduce((sum, item) => sum + item.value, 0);
+    
+    const csvContent = [
+      headers.join(','),
+      ...ticketData.map(item => {
+        const percentage = total > 0 ? ((item.value / total) * 100).toFixed(1) : 0;
+        return [item.name, item.value, `${percentage}%`].join(',');
+      }),
+      ['Total', total, '100%'].join(',')
+    ].join('\n');
+    
+    // Download CSV
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `ticket-report-${reportType}-${dateRange}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
   };
   
   const getChartTitle = () => {
@@ -296,10 +296,16 @@ const Reports = () => {
     <ResponsiveContainer width="100%" height={400}>
       <BarChart
         data={ticketData}
-        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis 
+          dataKey="name" 
+          angle={-45}
+          textAnchor="end"
+          height={100}
+          interval={0}
+        />
         <YAxis />
         <Tooltip />
         <Legend />
@@ -315,13 +321,13 @@ const Reports = () => {
           data={ticketData}
           cx="50%"
           cy="50%"
-          labelLine={true}
+          labelLine={false}
           label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-          outerRadius={150}
+          outerRadius={120}
           fill="#8884d8"
           dataKey="value"
         >
-          {Array.isArray(ticketData) && ticketData.map((entry, index) => (
+          {ticketData.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
@@ -331,6 +337,18 @@ const Reports = () => {
     </ResponsiveContainer>
   );
   
+  // Show message if no data
+  if (!loading && (!ticketData || ticketData.length === 0)) {
+    return (
+      <div className="p-6">
+        <h1 className="text-2xl font-bold text-gray-800 mb-6">Reports</h1>
+        <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+          <p>No data available for the selected filters.</p>
+        </div>
+      </div>
+    );
+  }
+  
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
@@ -339,21 +357,21 @@ const Reports = () => {
           onClick={exportCsvReport}
           className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md flex items-center"
         >
-          <DownloadIcon className="w-5 h-5 mr-2" />
+          <Download className="w-5 h-5 mr-2" />
           Export CSV
         </button>
       </div>
       
       {useMockData && (
-        <div className="bg-orange-100 border border-orange-400 text-orange-700 px-4 py-3 rounded mb-4">
-          <p>Using demo data - API connection issues detected</p>
+        <div className="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded mb-4">
+          <p>📊 Displaying demo data - {ticketData.length} categories found</p>
         </div>
       )}
       
       <div className="bg-white rounded-lg shadow p-6 mb-6">
         <div className="flex flex-wrap items-center gap-4 mb-6">
           <div className="flex items-center">
-            <FilterIcon className="w-5 h-5 mr-2 text-gray-500" />
+            <Filter className="w-5 h-5 mr-2 text-gray-500" />
             <span className="font-medium">Filters:</span>
           </div>
           
@@ -423,7 +441,7 @@ const Reports = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {Array.isArray(ticketData) && ticketData.map((item, index) => {
+              {ticketData.map((item, index) => {
                 const total = ticketData.reduce((sum, current) => sum + current.value, 0);
                 const percentage = total > 0 ? ((item.value / total) * 100).toFixed(1) : 0;
                 
@@ -441,7 +459,7 @@ const Reports = () => {
                   </tr>
                 );
               })}
-              {Array.isArray(ticketData) && ticketData.length > 0 && (
+              {ticketData.length > 0 && (
                 <tr className="bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
                     Total
