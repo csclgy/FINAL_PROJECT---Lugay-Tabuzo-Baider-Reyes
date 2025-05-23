@@ -1,16 +1,15 @@
-﻿using HelpdeskApp.HelpdeskApp.Application.Enums;
-
+﻿using HelpdeskApp.HelpdeskApp.Domain.Enums;  // <-- Use Domain enums here
+using System.Collections.Generic;
+using System;
 namespace HelpdeskApp.HelpdeskApp.Domain.Models
 {
-    // May 16, 2025: This code is not yet complete
-    // 
     public class Ticket
     {
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public SeverityLevel Severity { get; set; }
-        public TicketStatus Status { get; set; }
+        public string Severity { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public int CreatedByUserId { get; set; }
         public User CreatedBy { get; set; } = null!;

@@ -1,10 +1,12 @@
-﻿using HelpdeskApp.HelpdeskApp.Application.DTOs;
+﻿using System.Threading.Tasks;  // For Task<>
+using System.Collections.Generic;  // For IEnumerable<>
+using HelpdeskApp.HelpdeskApp.Application.DTOs;
 using HelpdeskApp.HelpdeskApp.Application.Enums;
+using HelpdeskApp.HelpdeskApp.Domain.Enums;
 using HelpdeskApp.HelpdeskApp.Application.Interfaces;
 using HelpdeskApp.HelpdeskApp.Domain.Models;
 using HelpdeskApp.HelpdeskApp.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace HelpdeskApp.HelpdeskApp.Infrastructure.Services
 {
@@ -28,7 +30,7 @@ namespace HelpdeskApp.HelpdeskApp.Infrastructure.Services
                 Title = dto.Title,
                 Description = dto.Description,
                 Severity = dto.Severity,
-                Status = TicketStatus.Open,
+                Status = dto.Status,
                 CreatedByUserId = userId,
                 DepartmentId = dto.DepartmentId
             };

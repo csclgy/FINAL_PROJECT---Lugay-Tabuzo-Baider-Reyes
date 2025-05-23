@@ -1,4 +1,6 @@
-﻿using HelpdeskApp.HelpdeskApp.Application.DTOs;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using HelpdeskApp.HelpdeskApp.Application.DTOs;
 using HelpdeskApp.HelpdeskApp.Domain.Models;
 
 namespace HelpdeskApp.HelpdeskApp.Application.Interfaces

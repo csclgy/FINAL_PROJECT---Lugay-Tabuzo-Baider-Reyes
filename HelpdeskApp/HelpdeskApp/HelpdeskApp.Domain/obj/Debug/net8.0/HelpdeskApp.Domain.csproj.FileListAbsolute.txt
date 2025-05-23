@@ -1,5 +1,0 @@
-/Users/francescaa.lugay/Documents/GitHub/FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes/HelpdeskApp/HelpdeskApp/HelpdeskApp.Domain/obj/Debug/net8.0/HelpdeskApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
-/Users/francescaa.lugay/Documents/GitHub/FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes/HelpdeskApp/HelpdeskApp/HelpdeskApp.Domain/obj/Debug/net8.0/HelpdeskApp.Domain.AssemblyInfoInputs.cache
-/Users/francescaa.lugay/Documents/GitHub/FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes/HelpdeskApp/HelpdeskApp/HelpdeskApp.Domain/obj/Debug/net8.0/HelpdeskApp.Domain.AssemblyInfo.cs
-/Users/francescaa.lugay/Documents/GitHub/FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes/HelpdeskApp/HelpdeskApp/HelpdeskApp.Domain/obj/Debug/net8.0/HelpdeskApp.Domain.csproj.CoreCompileInputs.cache
-/Users/francescaa.lugay/Documents/GitHub/FINAL_PROJECT---Lugay-Tabuzo-Baider-Reyes/HelpdeskApp/HelpdeskApp/HelpdeskApp.Domain/obj/Debug/net8.0/HelpdeskApp.Domain.sourcelink.json

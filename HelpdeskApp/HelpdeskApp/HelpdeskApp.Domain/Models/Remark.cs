@@ -1,4 +1,5 @@
-﻿namespace HelpdeskApp.HelpdeskApp.Domain.Models
+﻿using System;
+namespace HelpdeskApp.HelpdeskApp.Domain.Models
 {
     public class Remark
     {

@@ -1,4 +1,5 @@
-﻿namespace HelpdeskApp.HelpdeskApp.Domain.Models
+﻿using System.Collections.Generic;
+namespace HelpdeskApp.HelpdeskApp.Domain.Models
 {
     public class User
     {
