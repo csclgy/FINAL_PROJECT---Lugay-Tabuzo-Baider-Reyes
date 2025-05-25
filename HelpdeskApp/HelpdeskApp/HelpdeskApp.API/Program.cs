@@ -1,6 +1,7 @@
 using System.Text;
 using HelpdeskApp.HelpdeskApp.API.Middleware;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using HelpdeskApp.HelpdeskApp.Application.Interfaces;
 using HelpdeskApp.HelpdeskApp.Infrastructure.Data;
 // using HelpdeskApp.HelpdeskApp.Infrastructure.Helpers;
