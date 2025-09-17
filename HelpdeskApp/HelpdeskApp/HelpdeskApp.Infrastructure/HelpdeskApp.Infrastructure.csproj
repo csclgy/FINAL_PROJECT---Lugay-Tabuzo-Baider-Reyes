@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+<!--        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>-->
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\HelpdeskApp.Application\HelpdeskApp.Application.csproj" />
+        <ProjectReference Include="..\HelpdeskApp.Domain\HelpdeskApp.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.0" />
+        <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.5.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+</Project>
